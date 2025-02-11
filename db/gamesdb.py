@@ -17,10 +17,11 @@ class GamesAlchemyDB:
             self.engine = db.create_engine(db_url)
             self.conn = self.engine.connect()
             print(f"connection done.")
+            
         except ConnectionError as e:
-            print(f"{e}")
             self.engine = None
-
+            print(f"{e}")
+        
 enginedb = GamesAlchemyDB()
 
 #DB CLASS USING PSYCOPG2 - VERSION 2

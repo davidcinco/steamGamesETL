@@ -1,9 +1,17 @@
 from ETL.etl import ETLGames
-from db.gamesdb import gamedb
+# from db.gamesdb import gamedb
+
+etl = ETLGames()
 
 def runET():
-    #e
-    result = ETLGames().extractGames()
-    #t
-    ETLGames().transformGames(result)
+    #extract
+    result = etl.extractGames()
+    #transform
+    filteredGames = etl.transformGames(result)
+    print(filteredGames.head())
+    #loads
+    etl.loadGames(filteredGames)
     
+    print("ETL Pipeline finished.")
+
+runET()
