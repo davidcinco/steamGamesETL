@@ -4,6 +4,7 @@ import sqlalchemy as db
 #DB CLASS USING SQLALCHEMY - VERSION 1
 class GamesAlchemyDB:
     engine = None 
+    conn = None
     def __init__(self):
         try:
             database="etlgamesdb"
@@ -14,7 +15,7 @@ class GamesAlchemyDB:
             
             db_url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}"
             self.engine = db.create_engine(db_url)
-            conn = self.engine.connect()
+            self.conn = self.engine.connect()
             print(f"connection done.")
         except ConnectionError as e:
             print(f"{e}")
