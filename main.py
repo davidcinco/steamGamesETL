@@ -3,15 +3,14 @@ from ETL.etl import ETLGames
 
 etl = ETLGames()
 
-def runET():
+def runETL():
     #extract
     result = etl.extractGames()
     #transform
     filteredGames = etl.transformGames(result)
-    print(filteredGames.head())
     #loads
     etl.loadGames(filteredGames)
     
     print("ETL Pipeline finished.")
 
-runET()
+runETL()

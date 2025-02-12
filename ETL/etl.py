@@ -25,19 +25,15 @@ class ETLGames:
             
             #rename column to match with our table using SQLAlchemy
             steamGames.rename(columns={"price_initial (USD)": "price_initial"}, inplace=True)
-            
             #modify release_date where Not Released value is found"
             steamGames.loc[steamGames["release_date"] == "Not Released", "release_date"] = None 
-            
-            #modify release_date where Not Released value is found"
-            steamGames.loc[steamGames["release_date"] == "Not Released", "release_date"] = None 
-            
             
             return steamGames
             
     def loadGames(self, games):
         try:
             games.to_sql("games", enginedb.engine, if_exists="append", index=False)
+            print("dataframe stored")
         except Exception as e:
             print(f"{e}")
     
